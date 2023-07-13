@@ -1,82 +1,55 @@
-<main>
-    <section class="content">
-      <div class="container">
-        <h1 class="title">Ordinals Widget</h1>
-        <p class="inscriptions">Inscriptions Made: <span id="inscriptionCount">999999999999</span></p>
-        <div class="image-container">
-          <img src={currentImage} alt="New Inscription" class="inscription-image">
-        </div>
+<script>
+        import { Card, Button} from "flowbite-svelte";
+        let src = "https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/482ded83f01287c04a342b5a7c348a65db6d0ba55b5013ebc9092c20c59c458d_0";
+        let inscription_id = "#195789";
+        let type = "image/png"
+</script>
+
+<div class="container py-10 mt-10">
+<Card class="mx-auto max-w-3xl">
+  <div class="flex flex-col items-center justify-center min-h-[356px] min-w-[300px] bg-[#111] w-full h-full relative rounded cursor-pointer transition">
+    <img id="artifact_1689159605365_image" alt="Inscription #195789" loading="lazy" width="300" height="300" decoding="async"  class="h-auto max-h-96 max-w-96" src="{src}" style="color: transparent;">
+  </div>
+  <div class="mt-4 flex justify-between">
+    <a href="/inscription"><button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">{inscription_id}</button></a>
+    <a href="/inscription"><button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-4">{type}</button></a>
+  </div>
+</Card>
+</div>
+
+
+
+  <!-- <Card class="mx-auto max-w-5xl">
+    <div class="flex flex-col items-center justify-center min-h-[356px] min-w-[300px] bg-[#111] w-full h-full relative rounded cursor-pointer transition">
+      <img id="artifact_1689159605365_image" alt="Inscription #195789" loading="lazy" width="300" height="300" decoding="async" data-nimg="1" class="h-auto max-h-96 max-w-96" src="https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/482ded83f01287c04a342b5a7c348a65db6d0ba55b5013ebc9092c20c59c458d_0" style="color: transparent;">
+    </div>
+    <div class="mt-4 flex justify-between">
+      <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">#195789</button>
+      <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-4">image/png</button>
+    </div>
+  </Card> -->  
+  <!-- <Card class="mx-auto max-w-5xl">
+    <div class="flex flex-col items-center justify-center min-h-[356px] min-w-[300px] bg-[#111] w-full h-full relative rounded cursor-pointer transition">
+      <img id="artifact_1689159605365_image" alt="Inscription #195789" loading="lazy" width="300" height="300" decoding="async" data-nimg="1" class="h-auto max-h-96 max-w-96" src="https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/cd4542b22c76da614d1af49c9c96677e73c06937698bace6b693d343cd0c20fa_0" style="color: transparent;">
+      <div class="absolute bottom-0 left-0 bg-black bg-opacity-75 flex items-center justify-between w-full p-2 h-[56px]">
+        <div class="rounded bg-[#222] p-2 text-[#aaa]">#195789</div>
+        <div class="hidden md:block"></div>
+        <div class="select-none min-w-24 text-right rounded bg-[#222] p-2 text-[#aaa] transition">image/png</div>
       </div>
-    </section>
-  </main>
-  
-  <script>
-    import { afterUpdate } from 'svelte';
-  
-    // let inscriptionCount = 999999999999;
-    // let termsChecked = false;
-    let currentImage = '';
-  
-    let arr = [
-      "https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/44b4b14e0534adc49363c223d1a66b348a36c300560426fe2c886dd0dc638304_0",
-      "https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/e71f355f45ff70c8d3ca29164aa69232c80d81cabd1b9209e39ee222fab143a8_897",
-      "https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/fecc22e3ada601265f55fd1ccf330522fd46ad3e70868043ce9ff6bba28ab72c_0",
-      "https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/31f9eaa37d3257da5488d522695d6e284dc746fd661d36aa9bc30c275850f3bb_0",
-      "https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/1e7d604a087fb3fbb06f887a54987cd6ac95bba62eb87b075e0fabe533b95939_0",
-      "https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/1f4d5da4c6303d07f9bf758dfc84947766dcb431348b4c8a71b5b60bdb24e83c_0"
-    ];
-  
-    afterUpdate(() => {
-      const interval = setInterval(() => {
-        const randomIndex = Math.floor(Math.random() * arr.length);
-        currentImage = arr[randomIndex];
-      }, 3000);
-  
-      return () => clearInterval(interval);
-    });
-  </script>
-  
-  <style>
-    /* Tailwind CSS classes */
-    .content {
-      @apply flex justify-center items-center h-screen;
-    }
-  
-    .container {
-      @apply bg-white p-8 text-center rounded shadow;
-      width: 90%;
-    }
-  
-    .title {
-      @apply mb-4 text-3xl font-bold;
-    }
-  
-    .inscriptions {
-      @apply text-lg mb-4;
-    }
-  
-    .image-container {
-      @apply flex justify-center mb-6;
-    }
-  
-    .inscription-image {
-      @apply max-w-full h-auto border-4 border-gray-200 rounded;
-    }
-  
-    .cta {
-      @apply mb-6;
-    }
-  
-    .cta-button {
-      @apply block w-full mb-2 py-2 px-4 bg-blue-500 text-white rounded font-bold;
-    }
-  
-    .terms {
-      @apply flex items-center justify-center;
-    }
-  
-    .terms input[type="checkbox"] {
-      @apply mr-2;
-    }
-  </style>
-  
+      <div class="flex justify-center mt-4">
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Button 1</button>
+        <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-4">Button 2</button>
+      </div>
+    </div>
+  </Card> -->
+
+  <!-- <div>
+    <Card img="https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/8585b03f6e2878b551b07774eb2981e64e1bb98d84fc109bdb298a895d710291_0" style="margin: auto" href="/" horizontal reverse={hCard}>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+        Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+      </p>
+    </Card>
+    <!-- <Toggle bind:checked={hCard} class="mt-4 italic dark:text-gray-500">Reverse</Toggle> --
+  </div> -->
+

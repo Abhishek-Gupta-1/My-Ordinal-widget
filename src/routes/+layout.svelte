@@ -1,216 +1,42 @@
-<script>
+  <script>
     import "../app.css";
+    import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Avatar, Dropdown, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-svelte'
+    import { GradientButton } from 'flowbite-svelte';
+
   </script>
-  
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
-    <div
-        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
-    >
-        <a href="/" class="flex items-center">
-            <img src="" class="h-8 mr-3" alt="Ordinals Logo" />
-            <span
-                class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-                >Ordinals Widget</span
-            >
-        </a>
-        <div class="flex items-center md:order-2">
-            <button
-                type="button"
-                class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                id="user-menu-button"
-                aria-expanded="false"
-                data-dropdown-toggle="user-dropdown"
-                data-dropdown-placement="bottom"
-            >
-                <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full" src="" alt="user photo" />
-            </button>
-            <!-- <-- Dropdown menu -- -->
-            <div
-                class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-                id="user-dropdown"
-            >
-                <div class="px-4 py-3">
-                    <span class="block text-sm text-gray-900 dark:text-white"
-                        >User
-                    </span>
-                    <span
-                        class="block text-sm text-gray-500 truncate dark:text-gray-400"
-                        >User@gmail.com</span
-                    >
-                </div>
-                <ul class="py-2" aria-labelledby="user-menu-button">
-                    <li>
-                        <a
-                            href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                            >Dashboard</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                            >Settings</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="/wallet"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                            >Wallet</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                            >Sign out</a
-                        >
-                    </li>
-                </ul>
-            </div>
-            <button
-                data-collapse-toggle="navbar-user"
-                type="button"
-                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                aria-controls="navbar-user"
-                aria-expanded="false"
-            >
-                <span class="sr-only">Open main menu</span>
-                <svg
-                    class="w-5 h-5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 17 14"
-                >
-                    <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M1 1h15M1 7h15M1 13h15"
-                    />
-                </svg>
-            </button>
-        </div>
-        <div
-            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-            id="navbar-user"
-        >
-            <ul
-                class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
-            >
-                <li>
-                    <a
-                        href="/"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                        aria-current="page">Home</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="/upload"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                        >Upload</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="/wallet"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                        >Wallet</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="/docs"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                        >Docs</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="#"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                        >Optional</a
-                    >
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<slot />
-
-<!-- <script>
-      let isUserDropdownOpen = false;
-      let isNavbarUserOpen = false;
-  </script>
-  
-  <nav class="bg-white border-gray-200 dark:bg-gray-900">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="/" class="flex items-center">
-              <img src="" class="h-8 mr-3" alt="Ordinals Logo" />
-              <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Ordinals Widget</span>
-          </a>
-          <div class="flex items-center md:order-2">
-              <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" on:click={() => isUserDropdownOpen = !isUserDropdownOpen}>
-                  <span class="sr-only">Open user menu</span>
-                  <img class="w-8 h-8 rounded-full" src="" alt="user photo">
-              </button>
-              <-- Dropdown menu --
-              {#if isUserDropdownOpen}
-              <div class="z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-                  <div class="px-4 py-3">
-                      <span class="block text-sm text-gray-900 dark:text-white">User </span>
-                      <span class="block text-sm text-gray-500 truncate dark:text-gray-400">User@gmail.com</span>
-                  </div>
-                  <ul class="py-2" aria-labelledby="user-menu-button">
-                      <li>
-                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-                      </li>
-                      <li>
-                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-                      </li>
-                      <li>
-                          <a href="/wallet" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Wallet</a>
-                      </li>
-                      <li>
-                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-                      </li>
-                  </ul>
-              </div>
-              {/if}
-              <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false" on:click={() => isNavbarUserOpen = !isNavbarUserOpen}>
-                  <span class="sr-only">Open main menu</span>
-                  <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                  </svg>
-              </button>
-          </div>
-          <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user" class:{"hidden": !isNavbarUserOpen}">
-              <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                  <li>
-                      <a href="/" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">Home</a>
-                  </li>
-                  <li>
-                      <a href="/upload" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Upload</a>
-                  </li>
-                  <li>
-                      <a href="/wallet" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Wallet</a>
-                  </li>
-                  <li>
-                      <a href="/docs" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Docs</a>
-                  </li>
-                  <li>
-                      <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Optional</a>
-                  </li>
-              </ul>
-          </div>
+  <div class="container mx-auto px-12">
+    <Navbar let:hidden let:toggle class="py-4">
+      <NavBrand href="/">
+        <img src="https://www.sfox.com/wp-content/uploads/2020/03/0_hEB3PayeVFvh798c.png" class="mr-5 h-8 sm:h-10" alt="Logo"/> 
+        <!-- <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Ordinal</span> -->
+      </NavBrand>
+    
+      <div class="flex items-center md:order-2 ">
+        <Avatar id="avatar-menu" src="" />
+        <NavHamburger on:click={toggle} class1="w-full md:flex md:w-auto md:order-1"/>
       </div>
-  </nav>
+    
+      <Dropdown placement="bottom" triggeredBy="#avatar-menu" class="mt-2">
+        <DropdownHeader>
+          <span class="block text-sm">Bonnie Green</span>
+          <span class="block truncate text-sm font-medium">name@gmail.com</span>
+        </DropdownHeader>
+        <DropdownItem>Dashboard</DropdownItem>
+        <DropdownItem>Settings</DropdownItem>
+        <DropdownItem>Wallet</DropdownItem>
+        <DropdownDivider />
+        <DropdownItem><a href="/auth/login"><GradientButton color="purpleToBlue">SignIn</GradientButton></a></DropdownItem>
+      </Dropdown>
+    
+      <NavUl {hidden} class="mt-4 md:mt-0">
+        <NavLi href="/" class="text-lg" active={true}>Home</NavLi>
+        <NavLi href="/upload" class="text-lg" >Upload</NavLi>
+        <NavLi href="/wallet" class="text-lg">Wallet</NavLi>
+        <NavLi href="/docs" class="text-lg">Docs</NavLi>
+      </NavUl>
+    </Navbar>
+  </div>
+  <hr class="border-t border-gray-300 ">
+  <slot />
   
-  <slot /> -->

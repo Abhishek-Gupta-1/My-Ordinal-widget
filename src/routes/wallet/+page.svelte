@@ -1,87 +1,70 @@
 <script>
-    let transactions = [
-        {
-            id: '1',
-            inscribedNo: 'ABC123',
-            ordinalsId: 'ORD456',
-            timestamp: '2023-07-09 14:30:00',
-            // Add more properties as needed
-        },
-        {
-            id: '2',
-            inscribedNo: 'DEF456',
-            ordinalsId: 'ORD789',
-            timestamp: '2023-07-08 12:45:00',
-            // Add more properties as needed
-        },
-        // Add more transactions from your JSON file
-    ];
-</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<div class="min-h-screen bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-md mx-auto bg-white border border-gray-200 shadow-md rounded-lg p-8 mb-8">
-            <div class="flex items-center">
-                <i class="fas fa-user-circle text-4xl text-gray-500 mr-4"></i>
-                <div>
-                    <h1 class="text-2xl font-semibold">John Doe</h1>
-                    <p class="text-gray-600">john.doe@example.com</p>
-                </div>
-            </div>
-            <div class="mt-6">
-                <h2 class="text-lg font-semibold">Wallet Address</h2>
-                <p class="text-gray-600">0x123456789abcdef</p>
-            </div>
-            <div class="mt-6">
-                <h2 class="text-lg font-semibold">Balance</h2>
-                <p class="text-gray-600">$500.00</p>
-            </div>
-            <button class="mt-8 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
-                Add Cash
-            </button>
-        </div>
+    import { Card, Button, Toggle } from "flowbite-svelte";
+    let user_img = "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+    let user_name= "Satoshi"
+  </script>
 
-        <!-- <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4">
-            <h2 class="text-xl font-semibold mb-4">Last 5 Transactions</h2>
-            <!-- <ul>
-                <li class="flex items-center mb-2">
-                    <div class="bg-green-500 w-4 h-4 rounded-full mr-2"></div>
-                    <p class="text-gray-600">Transaction 1</p>
-                </li>
-                <li class="flex items-center mb-2">
-                    <div class="bg-green-500 w-4 h-4 rounded-full mr-2"></div>
-                    <p class="text-gray-600">Transaction 2</p>
-                </li>
-                <li class="flex items-center mb-2">
-                    <div class="bg-red-500 w-4 h-4 rounded-full mr-2"></div>
-                    <p class="text-gray-600">Transaction 3</p>
-                </li>
-                <li class="flex items-center mb-2">
-                    <div class="bg-yellow-500 w-4 h-4 rounded-full mr-2"></div>
-                    <p class="text-gray-600">Transaction 4</p>
-                </li>
-                <li class="flex items-center mb-2">
-                    <div class="bg-blue-500 w-4 h-4 rounded-full mr-2"></div>
-                    <p class="text-gray-600">Transaction 5</p>
-                </li>
-            </ul> --
-                    <!-- <TransactionList /> --
-
-                
-
-        </div> -->
-
-        <div>
-            <h2 class="text-xl font-semibold mb-4">Last 5 Transactions</h2>
-            {#each transactions as transaction (transaction.id)}
-            <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4 mb-4">
-                <h3 class="text-lg font-semibold">Transaction ID: {transaction.id}</h3>
-                <p class="text-gray-600">Inscribed No: {transaction.inscribedNo}</p>
-                <p class="text-gray-600">Ordinals ID: {transaction.ordinalsId}</p>
-                
-                <!-- Add more details as needed -->
-            </div>
-            {/each}
-        </div>
+<!-- <div style="height: auto" class="mx-auto mt-10 px-10" >
+  <div class="inline-block align-top" style="width: 29%;">
+    <Card img="{user_img}">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{user_name}</h5>
+    </Card>
+  </div>
+  <div class="inline-block align-top" style="width: 70%;">
+    <div class="bg-white shadow-lg rounded-lg p-3">
+      <p class="text-lg font-medium text-gray-800">Wallet ID</p>
+      <p class="text-xl font-semibold text-gray-900">WALLET123456789</p>
+      <p class="mt-4 text-lg font-medium text-gray-800">Balance</p>
+      <p class="text-2xl font-semibold text-green-600">$1,500.00</p>
+      <div class="flex flex-col items-center mt-8 space-y-4">
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Add Money</button>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded">Cash Out</button>
+      </div>
     </div>
+  </div>
+</div> -->
+
+<div style="height: auto" class="mx-auto mt-10 px-10">
+  <div class="inline-block align-top" style="width: 29%;">
+    <Card img="{user_img}">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{user_name}</h5>
+    </Card>
+  </div>
+  <div class="inline-block align-top" style="width: 70%;">
+    <div class="bg-white shadow-lg rounded-lg p-3">
+      <p class="text-lg font-medium text-gray-800">Wallet ID</p>
+      <p class="text-xl font-semibold text-gray-900">WALLET123456789</p>
+
+      <p class="mt-4 text-lg font-medium text-gray-800">Balance</p>
+      <p class="text-2xl font-semibold text-green-600">$1,500.00</p>
+
+      <p class="text-2xl font-semibold text-gray-900">Another Field</p>
+      <p class="text-2xl font-semibold text-gray-900">Another Field</p>
+      <div class="flex flex-row items-center justify-center mt-8 space-x-4">
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Add Money</button>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded">Cash Out</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+<div class ="my-10 px-16">
+  <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4 mb-4"><h3 class="text-lg font-semibold">Transaction ID: 1</h3> <p class="text-gray-600">Inscribed No: ABC123</p> <p class="text-gray-600">Ordinals ID: ORD456</p> </div>
+  <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4 mb-4"><h3 class="text-lg font-semibold">Transaction ID: 1</h3> <p class="text-gray-600">Inscribed No: ABC123</p> <p class="text-gray-600">Ordinals ID: ORD456</p> </div>
+  <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4 mb-4"><h3 class="text-lg font-semibold">Transaction ID: 1</h3> <p class="text-gray-600">Inscribed No: ABC123</p> <p class="text-gray-600">Ordinals ID: ORD456</p> </div>
+</div>
+
+  <!-- 
+  <Card  img="https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/7417c8b2416e1b5058495d8c1da0d6ddc40b9e29d3acbac7f5116ebe5f932492_0" href="" horizontal style="margin : auto">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Transaction 1</h5>
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+      Inscribe N0 : #777
+    </p>
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+      TimeStamp : #111
+    </p>
+  </Card> 
+-->
+
+
