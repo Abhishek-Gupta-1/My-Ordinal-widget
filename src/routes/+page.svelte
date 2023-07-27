@@ -1,18 +1,34 @@
-<script>
-        import { Card, Button} from "flowbite-svelte";
-        let src = "https://res.cloudinary.com/tonicpow/image/fetch/c_pad,g_center,h_300,w_300/f_auto/https://ordinals.gorillapool.io/api/files/inscriptions/482ded83f01287c04a342b5a7c348a65db6d0ba55b5013ebc9092c20c59c458d_0";
-        let inscription_id = "#195789";
-        let type = "image/png"
-</script>
+<section class="bg-gray-900 text-white">
+  <div
+    class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1
+        class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
+      >
+       Ordinals Widget
 
-<div class="container py-10 mt-10">
-<Card class="mx-auto max-w-3xl">
-  <div class="flex flex-col items-center justify-center min-h-[356px] min-w-[300px] bg-[#111] w-full h-full relative rounded cursor-pointer transition">
-    <img id="artifact_1689159605365_image" alt="Inscription #195789" loading="lazy" width="300" height="300" decoding="async"  class="h-auto max-h-96 max-w-96" src="{src}" style="color: transparent;">
+        <span class="sm:block"> Bitcoin based NFT's Website</span>
+      </h1>
+
+      <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+        Mint Images, Text into Bitcoin Blochchain using Ordinals Protocol
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+          href="/auth/login"
+        >
+          Get Started
+        </a>
+
+        <a
+          class="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+          href="/docs"
+        >
+          Learn More
+        </a>
+      </div>
+    </div>
   </div>
-  <div class="mt-4 flex justify-between">
-    <a href="/inscription"><button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">{inscription_id}</button></a>
-    <a href="/inscription"><button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-4">{type}</button></a>
-  </div>
-</Card>
-</div>
+</section>
