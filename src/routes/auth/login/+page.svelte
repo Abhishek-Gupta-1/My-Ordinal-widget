@@ -1,20 +1,20 @@
 <script>
-// @ts-nocheck
-  import { goto } from '$app/navigation';
+    import { goto } from '$app/navigation';
   import { setAuthToken } from '../../../services/authService';
   import { setName } from '../../../services/userDetails';
+
 
   let email = '';
   let password = '';
   let showPassword = false;
   let errorMessage = '';
 
-
+  // @ts-ignore
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
-      const response = await fetch('/login', {
+      const response = await fetch('/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,9 +25,11 @@
       const data = await response.json();
 
       if (response.ok) {
-
+        // If the response is successful (status_code 200), store the token and redirect to the dashboard
         console.log(data.data.access_token)
         setAuthToken(data.data.access_token);
+        // Redirect to the dashboard or any other appropriate page after successful login
+        // For example: window.location.href = '/user dashboard';
         setName(email);
         goto('/dashboard')
         console.log('Login successful');
@@ -36,9 +38,11 @@
         showPassword = false;
 
       } else {
+        // If the response is not successful, show the error message from the server
         errorMessage = data.message || 'Login failed. Please try again.';
       }
     } catch (error) {
+      // If an error occurs during the fetch request, show a generic error message
       errorMessage = 'An error occurred during login. Please try again later.';
       console.error(error);
     }
@@ -48,7 +52,7 @@
 <div class="min-h-screen flex items-center justify-center">
   <div class="max-w-md w-full">
     <div class="bg-white py-8 px-6 rounded-lg shadow-md">
-      <h3 class="mb-4 text-xl font-medium text-gray-900">Sign in to our Ordinals Widget</h3>
+      <h3 class="mb-4 text-xl font-medium text-gray-900">Sign in to our platform</h3>
       <form class="space-y-4" on:submit={handleSubmit}>
         <div>
           <!-- svelte-ignore a11y-label-has-associated-control -->

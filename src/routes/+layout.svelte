@@ -1,12 +1,8 @@
 <script>
-    import { page } from "$app/stores";
+
   import "../app.css"
   import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Avatar, Dropdown, DropdownItem, DropdownHeader, DropdownDivider } from 'flowbite-svelte'
   import { GradientButton } from 'flowbite-svelte';
-
-  let avatar_src = '';
-  let activePage = '/'
- 
 
 </script>
 
@@ -17,8 +13,8 @@
       <!-- <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Ordinal</span> -->
     </NavBrand>
   
-    <div class="flex items-center md:order-2">
-      <Avatar id="avatar-menu" src={avatar_src} />
+    <div class="flex items-center md:order-2 ">
+      <Avatar id="avatar-menu" src="" />
       <NavHamburger on:click={toggle} class1="w-full md:flex md:w-auto md:order-1"/>
     </div>
   
@@ -34,9 +30,9 @@
       <DropdownItem><a href="/auth/login"><GradientButton color="purpleToBlue">SignIn</GradientButton></a></DropdownItem>
     </Dropdown>
   
-    <NavUl {hidden} class="mt-4 md:mt-0">
-      <NavLi href="/" class="text-lg" active = {true}>Home</NavLi>
-      <NavLi href="/upload" class="text-lg" }>Upload</NavLi>
+    <NavUl {hidden} class="mt-4 md:mt-0 ">
+      <NavLi href="/" class="text-lg">Home</NavLi>
+      <NavLi href="/upload" class="text-lg" >Upload</NavLi>
       <NavLi href="/wallet" class="text-lg" >Wallet</NavLi>
       <NavLi href="/docs" class="text-lg" >Docs</NavLi>
     </NavUl>

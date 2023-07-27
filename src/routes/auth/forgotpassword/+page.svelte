@@ -6,7 +6,7 @@
     async function handleSubmit(event) {
       event.preventDefault();
       try {
-        const response = await fetch(`https:///auth/forgot_password?email=${encodeURIComponent(email)}`);
+        const response = await fetch(`/auth/forgot_password?email=${encodeURIComponent(email)}`);
   
         if (response.ok) {
           const data = await response.json();
@@ -53,7 +53,7 @@
               Reset Password
             </button>
             <div class="text-sm text-gray-500 mt-2">
-              <a href="/auth/login" class="text-orange-500 hover:underline">Back to Login</a>
+              <a href="/auth/login" class="text-orange-500  hover:underline">Back to Login</a>
             </div>
           </form>
         {/if}
