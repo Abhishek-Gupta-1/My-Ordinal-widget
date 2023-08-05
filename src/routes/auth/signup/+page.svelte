@@ -2,6 +2,7 @@
     import { goto } from '$app/navigation';
   import { setAuthToken } from '../../../services/authService';
   import {setName} from '../../../services/userDetails';
+    import { storeWalletInfo } from '../../../services/database';
 
   let name = '';
   let email = '';
@@ -36,6 +37,9 @@
 
       if (response.ok) {
         // If the response is successful (status_code 200), store the token and set the signup success flag
+        console.log(data.data.user_id,data.data.wallet_id,data.data.wallet_address);
+        console.log(storeWalletInfo(data.data.user_id, data.data.wallet_id, data.data.wallet_address));
+        await storeWalletInfo(data.data.user_id, data.data.wallet_id, data.data.wallet_address);
         setAuthToken(data.data.access_token);
         setName(name)
         console.log(data.data.access_token)
