@@ -1,17 +1,13 @@
-const TOKEN_KEY = '';
 
 // @ts-ignore
 export function setAuthToken(token) {
-  localStorage.setItem(TOKEN_KEY, token);
+  localStorage.setItem("authToken",token);
 }
 
 export function getAuthToken() {
-  return localStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem("authToken");
 }
 
-export function removeAuthToken() {
-  localStorage.removeItem(TOKEN_KEY);
-}
 
 export function isAuthenticated() {
   const token = getAuthToken();

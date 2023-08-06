@@ -6,7 +6,7 @@
     async function handleSubmit(event) {
       event.preventDefault();
       try {
-        const response = await fetch(`/auth/forgot_password?email=${encodeURIComponent(email)}`);
+        const response = await fetch(`https://api.neucron.io/auth/forgot_password?email=${encodeURIComponent(email)}`);
   
         if (response.ok) {
           const data = await response.json();
@@ -24,6 +24,7 @@
     }
   </script>
   
+  <main>
   <div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="max-w-md w-full">
       <div class="bg-white py-8 px-6 rounded-lg shadow-md">
@@ -48,16 +49,17 @@
             </div>
             <button
               type="submit"
-              class="w-full bg-orange-500 text-white font-medium py-2 rounded-md hover:bg-orange-600"
+              class="w-full bg-indigo-800 text-white font-medium py-2 rounded-md hover:bg-indigo-900"
             >
               Reset Password
             </button>
             <div class="text-sm text-gray-500 mt-2">
-              <a href="/auth/login" class="text-orange-500  hover:underline">Back to Login</a>
+              <a href="/auth/login" class="text-indigo-800  hover:underline">Back to Login</a>
             </div>
           </form>
         {/if}
       </div>
     </div>
   </div>
+</main>
   
