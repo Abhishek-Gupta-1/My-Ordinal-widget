@@ -23,18 +23,14 @@
     if (fileInput && fileInput.files.length > 0) {
       const file = fileInput.files[0];
       const firebaseResponse = await uploadToFirebase(file);
-      console.log(firebaseResponse);
-      if(firebaseResponse.ok){
-        firebaseUrl = firebaseUrl + file.name  + '?alt=media';
-        await sendRequestToAPI(firebaseUrl);
-      }
+      firebaseUrl = firebaseUrl + file.name  + '?alt=media';
+      await sendRequestToAPI(firebaseUrl);
     }
   }
 
   async function uploadToFirebase(file) {
     const firebaseStorageURL = `https://firebasestorage.googleapis.com/v0/b/${firebaseConfig.storageBucket}/o`;
     const uploadType = 'media';
-    // TODO: Need to fix this as it was not working
     const uploadURL = `${firebaseStorageURL}/${encodeURIComponent(file.name)}?alt=${uploadType}`;
 
     try {
