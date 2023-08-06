@@ -19,11 +19,14 @@
 
   async function handleUploadClick() {
     const fileInput = document.getElementById('fileInput');
+    let firebaseUrl = 'https://firebasestorage.googleapis.com/v0/b/ordinal-widget.appspot.com/o/'
     if (fileInput && fileInput.files.length > 0) {
       const file = fileInput.files[0];
       const firebaseResponse = await uploadToFirebase(file);
-      if (firebaseResponse && firebaseResponse.url) {
-        await sendRequestToAPI(firebaseResponse.url);
+      console.log(firebaseResponse);
+      if(firebaseResponse.ok){
+        firebaseUrl = firebaseUrl + file.name  + '?alt=media';
+        await sendRequestToAPI(firebaseUrl);
       }
     }
   }
@@ -41,7 +44,8 @@
       });
 
       if (storageResponse.ok) {
-        return await storageResponse.json();
+        console.log(storageResponse);
+        return storageResponse;
       } else {
         throw new Error('Failed to upload file to Firebase Storage.');
       }
@@ -53,7 +57,7 @@
 
 
   async function sendRequestToAPI(firebaseUrl) {
-    const apiUrl = 'https://api.neucron.io/utility/upload?walletID=' + getWalletId();
+    const apiUrl = 'https://api.neucron.io/utility/upload?walletID=' + await getWalletId();
     const requestBody = {
       url: firebaseUrl
     };
