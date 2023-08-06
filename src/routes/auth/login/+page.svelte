@@ -1,7 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
   import { setAuthToken } from "../../../services/authService";
-  import { setName } from "../../../services/userDetails";
 
   let email = "";
   let password = "";
@@ -37,7 +36,6 @@
 
   function handleSuccessfulLogin(token) {
     setAuthToken(token);
-    setName(email);
     goto("/dashboard");
     // console.log("Login successful");
     // resetForm();

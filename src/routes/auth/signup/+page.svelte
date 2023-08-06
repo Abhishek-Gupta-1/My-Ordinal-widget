@@ -1,7 +1,6 @@
 <script>
     import { goto } from '$app/navigation';
   import { setAuthToken } from '../../../services/authService';
-  import {setName} from '../../../services/userDetails';
     import { storeWalletInfo } from '../../../services/database';
 
   let name = '';
@@ -39,7 +38,6 @@
         // If the response is successful (status_code 200), store the token and set the signup success flag
         await storeWalletInfo(data.data.user_id, data.data.wallet_id, data.data.wallet_address);
         setAuthToken(data.data.access_token);
-        setName(name)
         isSignupSuccessful = true;
 
         goto('/dashboard');

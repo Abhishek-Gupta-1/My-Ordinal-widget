@@ -4,7 +4,7 @@
 import { initializeApp } from "firebase/app";
 
 // Your Firebase configuration (copied from the provided code)
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyBs-R6uJx3HbEi6ug4Qn5QOWjtfQljIJv8",
     authDomain: "ordinal-widget.firebaseapp.com",
     projectId: "ordinal-widget",

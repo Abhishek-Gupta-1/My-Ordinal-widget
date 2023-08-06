@@ -4,6 +4,7 @@
   import { Modal, Label, Input, Checkbox } from 'flowbite-svelte';
   import { Textarea } from 'flowbite-svelte';
   import {getAuthToken} from "../../services/authService";
+  import {firebaseConfig} from "../../services/firebase";
 
   let text = {
     id: 'Text',
@@ -15,35 +16,102 @@
 
   let formModal = false;
 
-  function handleUploadClick() {
-    formModal = true;
+  async function handleUploadClick() {
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      const firebaseResponse = await uploadToFirebase(file);
+      if (firebaseResponse && firebaseResponse.url) {
+        await sendRequestToAPI(firebaseResponse.url);
+      }
+    }
+  }
+
+  async function uploadToFirebase(file) {
+    const firebaseStorageURL = `https://firebasestorage.googleapis.com/v0/b/${firebaseConfig.storageBucket}/o`;
+    const uploadType = 'media';
+    // TODO: Need to fix this as it was not working
+    const uploadURL = `${firebaseStorageURL}/${encodeURIComponent(file.name)}?alt=${uploadType}`;
+
+    try {
+      const storageResponse = await fetch(uploadURL, {
+        method: 'POST',
+        body: file
+      });
+
+      if (storageResponse.ok) {
+        return await storageResponse.json();
+      } else {
+        throw new Error('Failed to upload file to Firebase Storage.');
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      throw error;
+    }
+  }
+
+
+  async function sendRequestToAPI(firebaseUrl) {
+    const apiUrl = 'https://api.neucron.io/utility/upload?walletID=' + getWalletId();
+    const requestBody = {
+      url: firebaseUrl
+    };
+    const apiResponse = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Authorization': getAuthToken(),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    });
+    return apiResponse.json();
   }
 
   function closeModal() {
     formModal = false;
   }
 
+  async function getWalletId() {
+    try {
+      const response = await fetch('https://api.neucron.io/custom/wallet/list', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': getAuthToken(),
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        return data.data.walletList[0];
+      } else {
+        console.error('Error fetching wallet ID:', await response.text());
+      }
+    } catch (error) {
+      console.error('An error occurred while fetching wallet ID:', error);
+    }
+  }
+
   async function postData() {
     try {
-      const walletID = "b5dc7aac-f922-42fb-babf-42267f9b8e16"; // Replace with actual walletID
-      const message = text.value; // Assuming you're using the "text" input
+      const walletID =  await getWalletId();
+      const message = text.value;
 
       const response = await fetch(`https://api.neucron.io/utility/postdata?walletID=${walletID}`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTM4NjUyNDIsImlhdCI6MTY5MTI3MzI0MiwiaXNzIjoiaHR0cHM6Ly9uZXVjcm9uLmlvIiwianRpIjoiMmY3MDNkZDQtYjE5My00MTNmLTkxYzgtNDk2NmNiMTUyNTVmIiwibmJmIjoxNjkxMjczMjQyLCJzdWIiOiIyMDNmZTA4Ny02ZmMyLTRiZGItYWFhNS1iZjJmNjNmY2U4NzIiLCJ1c2VyX2lkIjoiMjAzZmUwODctNmZjMi00YmRiLWFhYTUtYmYyZjYzZmNlODcyIn0.UPnc5BSS902KrpVj-cvoyIZASJ5ughb2BaDZmURYxSg',
+          'Authorization': getAuthToken(),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ message })
       });
 
       if (response.ok) {
-        // Handle success
         console.log('Data posted successfully:', await response.json());
         closeModal();
       } else {
-        // Handle error
         console.error('Error posting data:', await response.text());
       }
     } catch (error) {
@@ -64,13 +132,13 @@
         </label>
         <input id="fileInput" type="file" class="hidden" />
       </div>
-      <Button size="xl" on:click={handleUploadClick}>Upload</Button>
+      <Button size="xl" on:click={handleUploadClick}>Upload File</Button>
     </TabItem>
 
     <TabItem class="w-full">
       <span slot="title">Text</span>
       <Textarea bind:value={text.value} {...text} />
-      <Button size="xl" on:click={postData}>Upload</Button>
+      <Button size="xl" on:click={postData}> Upload Text </Button>
     </TabItem>
   </Tabs>
 
