@@ -40,13 +40,13 @@
   
         <div class="mt-6 p-4 rounded-lg border border-gray-300 shadow-lg">
           <div class="grid grid-cols-2 gap-4">
-            <p class="text-lg font-medium">ID:</p>
+            <p class="text-lg font-medium">Wallet ID :</p>
             <p>{userData.id}</p>
   
-            <p class="text-lg font-medium">Email:</p>
+            <p class="text-lg font-medium">Email :</p>
             <p>{userData.email}</p>
   
-            <p class="text-lg font-medium">Phone Verified:</p>
+            <p class="text-lg font-medium">Phone Verified :</p>
             <p>{userData.phone_verified ? 'Yes' : 'No'}</p>
   
   
