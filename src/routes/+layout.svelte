@@ -67,7 +67,7 @@ style="max-width: 90%; margin : auto"
       <NavLi
         class="lg:px-2 lg:mb-0"
         active={activeUrl.startsWith('/upload')}
-        href="/upload">Upload</NavLi>
+        href="/upload">Mint</NavLi>
       
       <NavLi
         class="lg:px-2 lg:mb-0"
