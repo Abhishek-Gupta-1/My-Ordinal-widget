@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { getAuthToken } from '../../services/authService';
+  import {getWalletId} from "../../services/WalletService";
 
   let accessToken;
   $: balance = {
@@ -11,30 +12,10 @@
   };
 
   let generatedAddress = '';
-  let walletId = null;
-
-  async function getWalletList() {
-    try {
-      accessToken = await getAuthToken();
-      const response = await fetch('https://api.neucron.io/custom/wallet/list', {
-        headers: {
-          Authorization: accessToken,
-        },
-      });
-      const data = await response.json();
-      const walletList = data.data.walletList;
-      walletId = walletList[0]; // Get the first walletId from the list
-    } catch (error) {
-      console.error('Error occurred:', error);
-    }
-  }
 
   async function getBalance() {
     try {
-      if (!walletId) {
-        await getWalletList(); // Fetch the walletId if not available
-      }
-      const response = await fetch(`https://api.neucron.io/custom/wallet/balance?walletID=${walletId}`, {
+      const response = await fetch(`https://api.neucron.io/wallet/balance?walletID=` + getWalletId(), {
         headers: {
           Authorization: accessToken,
         },
@@ -48,10 +29,7 @@
 
   async function generateAddress() {
     try {
-      if (!walletId) {
-        await getWalletList(); // Fetch the walletId if not available
-      }
-      const response = await fetch(`https://api.neucron.io/custom/wallet/address?walletID=${walletId}`, {
+      const response = await fetch(`https://api.neucron.io/wallet/address?walletID=` + getWalletId(), {
         headers: {
           Authorization: accessToken,
         },

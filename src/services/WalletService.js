@@ -2,7 +2,7 @@ import {getAuthToken} from "./authService";
 
 export async function getWalletId() {
     try {
-        const response = await fetch('https://api.neucron.io/custom/wallet/list', {
+        const response = await fetch('https://api.neucron.io/wallet/list', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

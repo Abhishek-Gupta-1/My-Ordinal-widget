@@ -53,7 +53,7 @@
 
 
   async function sendRequestToAPI(firebaseUrl) {
-    const apiUrl = 'https://api.neucron.io/utility/upload?walletID=' + await getWalletId();
+    const apiUrl = 'https://api.neucron.io/tx/file?walletID=' + await getWalletId();
     const requestBody = {
       url: firebaseUrl
     };
@@ -78,7 +78,7 @@
       const walletID =  await getWalletId();
       const message = text.value;
 
-      const response = await fetch(`https://api.neucron.io/utility/postdata?walletID=${walletID}`, {
+      const response = await fetch(`https://api.neucron.io/tx/postdata?walletID=${walletID}`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

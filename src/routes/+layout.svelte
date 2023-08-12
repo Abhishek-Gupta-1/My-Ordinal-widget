@@ -1,8 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { Navbar, NavBrand, NavHamburger, NavLi, NavUl } from 'flowbite-svelte';
-  import { onMount, setContext } from 'svelte';
-  import { writable, type Writable } from 'svelte/store';
   import {isAuthenticated} from '../services/authService'
   import '../app.css';
 
@@ -14,13 +12,6 @@
   let divClass = 'w-full ml-auto lg:block lg:w-auto order-1 lg:order-none';
   let ulClass =
     'flex flex-col py-3 my-4 lg:flex-row lg:my-0 text-l font-medium text-gray-900 dark:text-gray-300 gap-4';
-
-  const drawerHiddenStore: Writable<boolean> = writable<boolean>(true);
-  setContext('drawer', drawerHiddenStore);
-
-  const toggleDrawer = () => {
-    drawerHiddenStore.update((state) => !state);
-  };
 
 </script>
 
