@@ -37,8 +37,6 @@
   function handleSuccessfulLogin(token) {
     setAuthToken(token);
     goto("/dashboard");
-    // console.log("Login successful");
-    // resetForm();
   }
 
   function handleLoginError(message) {
