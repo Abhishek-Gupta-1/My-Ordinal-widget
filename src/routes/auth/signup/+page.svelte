@@ -22,10 +22,10 @@
     }
 
     try {
-      const response = await fetch('https://api.neucron.io/auth/signup', {
-        method: 'POST',
+      const response = await fetch("https://api.neucron.io/auth/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         // body: JSON.stringify({ name, email, password }),
         body: JSON.stringify({ email, password }),

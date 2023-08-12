@@ -72,7 +72,7 @@
         <div style="display: flex; align-items: center;">
           <input type="checkbox" class="form-checkbox text-indigo-900" bind:checked={showPassword} style="margin-right: 0.5rem;" />
           <span style="color: indigo; cursor: pointer;" on:click={() => (showPassword = !showPassword)}>Show password</span>
-          <a href="/auth/forgotpassword" style="margin-left: auto; font-size: 0.875rem; color: indigo; cursor: pointer;">Lost password?</a>
+          <a href="/auth/forgotpassword" style="margin-left: auto; font-size: 0.875rem; color: indigo; cursor: pointer;">Forgot password</a>
         </div>
         {#if errorMessage}
           <p style="color: #DC2626; font-size: 0.875rem; margin-top: 0.5rem;">{errorMessage}</p>

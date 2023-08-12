@@ -8,7 +8,7 @@
   $: isHomePage = $page.route.id === '/';
 
   $: activeUrl = $page.url.pathname;
-  let logo = 'https://www.sfox.com/wp-content/uploads/2020/03/0_hEB3PayeVFvh798c.png';
+  let logo = 'https://i.postimg.cc/rwZ1v7TS/bestmint.png';
   let divClass = 'w-full ml-auto lg:block lg:w-auto order-1 lg:order-none';
   let ulClass =
     'flex flex-col py-3 my-4 lg:flex-row lg:my-0 text-l font-medium text-gray-900 dark:text-gray-300 gap-4';
@@ -58,7 +58,7 @@ style="max-width: 90%; margin : auto"
       <NavLi
         class="lg:px-2 lg:mb-0"
         active={activeUrl.startsWith('/upload')}
-        href="/upload">Upload</NavLi>
+        href="/upload">Mint</NavLi>
       
       <NavLi
         class="lg:px-2 lg:mb-0"
