@@ -3,7 +3,6 @@
   import { getAuthToken } from '../../services/authService';
   import {getWalletId} from "../../services/WalletService";
 
-  let accessToken;
   $: balance = {
     confirmed: 0,
     unconfirmed: 0,
@@ -17,7 +16,7 @@
     try {
       const response = await fetch(`https://api.neucron.io/wallet/balance?walletID=` + await getWalletId(), {
         headers: {
-          Authorization: accessToken,
+          Authorization: getAuthToken(),
         },
       });
       const data = await response.json();
@@ -31,7 +30,7 @@
     try {
       const response = await fetch(`https://api.neucron.io/wallet/address?walletID=` + await getWalletId(), {
         headers: {
-          Authorization: accessToken,
+          Authorization: getAuthToken(),
         },
       });
       const data = await response.json();
