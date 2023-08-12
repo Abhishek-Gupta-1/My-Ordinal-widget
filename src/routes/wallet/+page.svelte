@@ -15,7 +15,7 @@
 
   async function getBalance() {
     try {
-      const response = await fetch(`https://api.neucron.io/wallet/balance?walletID=` + getWalletId(), {
+      const response = await fetch(`https://api.neucron.io/wallet/balance?walletID=` + await getWalletId(), {
         headers: {
           Authorization: accessToken,
         },
@@ -29,7 +29,7 @@
 
   async function generateAddress() {
     try {
-      const response = await fetch(`https://api.neucron.io/wallet/address?walletID=` + getWalletId(), {
+      const response = await fetch(`https://api.neucron.io/wallet/address?walletID=` + await getWalletId(), {
         headers: {
           Authorization: accessToken,
         },
