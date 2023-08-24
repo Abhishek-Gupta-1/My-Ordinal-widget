@@ -47,15 +47,6 @@
         }
     }
 
-    function copyToClipboard() {
-        const textarea = document.createElement('textarea');
-        textarea.value = transactionId;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-    }
-
     function verifyTransaction() {
         if (transactionId) {
             window.open(`https://whatsonchain.com/tx/${transactionId}`, '_blank');
