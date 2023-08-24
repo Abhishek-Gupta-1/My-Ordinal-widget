@@ -2,6 +2,7 @@
 
     let address = '';
     let isFundsAdded = false;
+    let transactionId = '';
 
     async function addFundsToWallet() {
         const url = 'https://dev.neucron.io/tx/send?walletID=ac067de7-6581-4dc5-80a0-dd4d0ac8b211';
@@ -30,8 +31,9 @@
 
             if (response.ok) {
                 // Handle success
+                const responseData = await response.json();
                 isFundsAdded = true;
-                console.log('Funds added successfully');
+                transactionId = responseData.data.txid;
             } else {
                 // Handle error
                 console.error('Failed to add funds');
@@ -39,6 +41,15 @@
         } catch (error) {
             console.error('Network error:', error);
         }
+    }
+
+    function copyToClipboard() {
+        const textarea = document.createElement('textarea');
+        textarea.value = transactionId;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
     }
 
 </script>
@@ -54,6 +65,13 @@
 
         {#if isFundsAdded}
             <p class="success-message">Funds added successfully!</p>
+            <div class="transaction-id">
+                <p class="transaction-id-label">Transaction ID:</p>
+                <div class="transaction-id-container">
+                    <p class="transaction-id-text">{transactionId}</p>
+                    <button on:click={copyToClipboard} class="copy-button">Copy</button>
+                </div>
+            </div>
         {/if}
     </div>
 </main>
@@ -76,6 +94,7 @@
         border-radius: 8px;
         padding: 20px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
     }
 
     .label {
@@ -110,5 +129,43 @@
         color: #00a000;
         font-weight: bold;
         margin-top: 10px;
+    }
+
+    .transaction-id {
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .transaction-id-label {
+        font-weight: bold;
+    }
+
+    .transaction-id-container {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+        max-width: 100%; /* Add this */
+    }
+
+    .transaction-id-text {
+        flex-grow: 1;
+        word-wrap: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .copy-button {
+        background-color: #f0f0f0;
+        border: none;
+        color: #007bff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .copy-button:hover {
+        background-color: #e0e0e0;
+        color: #0056b3;
     }
 </style>
