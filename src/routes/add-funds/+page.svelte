@@ -16,7 +16,7 @@
             "output_Utxo": [
                 {
                     "address": address,
-                    "amount": 100
+                    "amount": 1
                 }
             ]
         };
