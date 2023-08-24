@@ -7,11 +7,13 @@
   let showPassword = false;
   let errorMessage = "";
 
+  const baseURL = 'https://dev.neucron.io';
+
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
-      const response = await fetch("https://api.neucron.io/auth/login", {
+      const response = await fetch(`${baseURL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,7 +24,7 @@
       const data = await response.json();
 
       if (response.ok) {
-        handleSuccessfulLogin(data.data.access_token);
+        await handleSuccessfulLogin(data.data.access_token);
       } else {
         handleLoginError(data.message || "Login failed. Please try again.");
       }
@@ -34,8 +36,8 @@
     }
   }
 
-  function handleSuccessfulLogin(token) {
-    setAuthToken(token);
+  async function handleSuccessfulLogin(token) {
+    await setAuthToken(token);
     goto("/dashboard");
   }
 

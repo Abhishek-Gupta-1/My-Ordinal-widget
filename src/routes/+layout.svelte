@@ -49,7 +49,7 @@
 
       <NavLi class="lg:px-2 lg:mb-0" active={activeUrl === '/'} href="/">Home</NavLi>
       <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/docs')} href="/docs">Documentation</NavLi>
-
+      <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/add-funds')} href="/add-funds"> Add Funds </NavLi>
       {#if isLoggedIn}
         <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/dashboard')} href="/dashboard">Dashboard</NavLi>
         <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/wallet')} href="/wallet">Wallet</NavLi>

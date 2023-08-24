@@ -1,12 +1,14 @@
    <script>
     let email = '';
     let message = '';
+
+     const baseURL = 'https://dev.neucron.io';
   
     // @ts-ignore
     async function handleSubmit(event) {
       event.preventDefault();
       try {
-        const response = await fetch(`https://api.neucron.io/auth/forgot_password?email=${encodeURIComponent(email)}`);
+        const response = await fetch(`${baseURL}/auth/forgot_password?email=${encodeURIComponent(email)}`);
   
         if (response.ok) {
           const data = await response.json();

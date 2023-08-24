@@ -3,6 +3,8 @@
   import { getAuthToken } from '../../services/authService';
   import {getWalletId} from "../../services/WalletService";
 
+  const baseURL = 'https://dev.neucron.io';
+
   $: balance = {
     confirmed: 0,
     unconfirmed: 0,
@@ -14,7 +16,7 @@
 
   async function getBalance() {
     try {
-      const response = await fetch(`https://api.neucron.io/wallet/balance?walletID=` + await getWalletId(), {
+      const response = await fetch(baseURL + `/wallet/balance?walletID=` + await getWalletId(), {
         headers: {
           Authorization: getAuthToken(),
         },
@@ -28,7 +30,7 @@
 
   async function generateAddress() {
     try {
-      const response = await fetch(`https://api.neucron.io/wallet/address?walletID=` + await getWalletId(), {
+      const response = await fetch(baseURL + `/wallet/address?walletID=` + await getWalletId(), {
         headers: {
           Authorization: getAuthToken(),
         },

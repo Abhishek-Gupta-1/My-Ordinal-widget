@@ -3,6 +3,8 @@
   import { setAuthToken } from '../../../services/authService';
     import { storeWalletInfo } from '../../../services/database';
 
+    const baseURL = 'https://dev.neucron.io';
+
   let name = '';
   let email = '';
   let password = '';
@@ -22,12 +24,11 @@
     }
 
     try {
-      const response = await fetch("https://api.neucron.io/auth/signup", {
+      const response = await fetch(`${baseURL}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        // body: JSON.stringify({ name, email, password }),
         body: JSON.stringify({ email, password }),
 
       });
@@ -35,19 +36,15 @@
       const data = await response.json();
 
       if (response.ok) {
-        // If the response is successful (status_code 200), store the token and set the signup success flag
         await storeWalletInfo(data.data.user_id, data.data.wallet_id, data.data.wallet_address);
         setAuthToken(data.data.access_token);
         isSignupSuccessful = true;
-
         goto('/dashboard');
 
       } else {
-        // If the response is not successful, show the error message from the server
         errorMessage = data.message || 'Signup failed. Please try again.';
       }
     } catch (error) {
-      // If an error occurs during the fetch request, show a generic error message
       errorMessage = 'An error occurred during signup. Please try again later.';
       console.error(error);
     }

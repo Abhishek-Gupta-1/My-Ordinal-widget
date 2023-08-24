@@ -1,6 +1,16 @@
 <script>
     import { onMount } from "svelte";
     import { getAuthToken } from "../../services/authService";
+    import { requireAuth } from "../../services/routeGuard";
+
+    export let session; // Get session data from SvelteKit load function
+
+    export async function load() {
+      const result = await requireAuth();
+      if (result.redirect) {
+        return result; // Redirect if not authenticated
+      }
+    }
   
     let accessToken;
     let userData = {
@@ -14,7 +24,7 @@
         
         accessToken =  getAuthToken();
   
-        const response = await fetch("https://api.neucron.io/user/info", {
+        const response = await fetch("https://dev.neucron.io/user/info", {
           headers: {
             Authorization: accessToken,
           },
