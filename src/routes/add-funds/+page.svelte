@@ -54,7 +54,7 @@
 
     function verifyTransaction() {
         if (transactionId) {
-            window.location.href = `https://whatsonchain.com/tx/${transactionId}`;
+            window.open(`https://whatsonchain.com/tx/${transactionId}`, '_blank');
         }
     }
 
