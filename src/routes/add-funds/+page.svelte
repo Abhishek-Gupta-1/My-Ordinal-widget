@@ -52,6 +52,12 @@
         document.body.removeChild(textarea);
     }
 
+    function verifyTransaction() {
+        if (transactionId) {
+            window.location.href = `https://whatsonchain.com/tx/${transactionId}`;
+        }
+    }
+
 </script>
 
 <main class="container">
@@ -66,11 +72,7 @@
         {#if isFundsAdded}
             <p class="success-message">Funds added successfully!</p>
             <div class="transaction-id">
-                <p class="transaction-id-label">Transaction ID:</p>
-                <div class="transaction-id-container">
-                    <p class="transaction-id-text">{transactionId}</p>
-                    <button on:click={copyToClipboard} class="copy-button">Copy</button>
-                </div>
+                <button on:click={verifyTransaction} class="verify-button">Verify Transaction</button>
             </div>
         {/if}
     </div>
@@ -94,7 +96,6 @@
         border-radius: 8px;
         padding: 20px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        position: relative;
     }
 
     .label {
@@ -131,41 +132,19 @@
         margin-top: 10px;
     }
 
-    .transaction-id {
-        margin-top: 20px;
-        text-align: left;
-    }
-
-    .transaction-id-label {
-        font-weight: bold;
-    }
-
-    .transaction-id-container {
-        display: flex;
-        align-items: center;
-        margin-top: 5px;
-        max-width: 100%; /* Add this */
-    }
-
-    .transaction-id-text {
-        flex-grow: 1;
-        word-wrap: break-word;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .copy-button {
+    .verify-button {
         background-color: #f0f0f0;
         border: none;
         color: #007bff;
-        padding: 5px 10px;
+        padding: 10px 20px;
         border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
     }
 
-    .copy-button:hover {
+    .verify-button:hover {
         background-color: #e0e0e0;
         color: #0056b3;
     }
+
 </style>
