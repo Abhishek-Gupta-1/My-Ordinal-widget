@@ -3,8 +3,10 @@
     let address = '';
     let isFundsAdded = false;
     let transactionId = '';
+    let isTransactionProcessing = false;
 
     async function addFundsToWallet() {
+        isTransactionProcessing = true;
         const url = 'https://dev.neucron.io/tx/send?walletID=ac067de7-6581-4dc5-80a0-dd4d0ac8b211';
         const headers = {
             'accept': 'application/json',
@@ -40,6 +42,8 @@
             }
         } catch (error) {
             console.error('Network error:', error);
+        } finally {
+            isTransactionProcessing = false; // Stop processing
         }
     }
 
@@ -75,6 +79,11 @@
                 <button on:click={verifyTransaction} class="verify-button">Verify Transaction</button>
             </div>
         {/if}
+
+        {#if isTransactionProcessing}
+            <p class="processing-message">Processing transaction...</p>
+        {/if}
+
     </div>
 </main>
 
@@ -145,6 +154,12 @@
     .verify-button:hover {
         background-color: #e0e0e0;
         color: #0056b3;
+    }
+
+    .processing-message {
+        font-style: italic;
+        color: #777;
+        margin-top: 10px;
     }
 
 </style>
