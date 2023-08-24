@@ -37,8 +37,7 @@ To get started, follow these steps to create your wallet: <br>
 <br>
 <p>
 
-After wallet creation, you will be assigned a unique Wallet ID. 
-This ID is required to access your wallet and perform various actions. <br>
+After wallet creation, you will be assigned a unique Wallet ID, This ID is required to access your wallet and perform various actions. <br>
 You can find your Wallet ID on your dashboard after logging in. <br>
 </p>
 <br>
@@ -59,8 +58,8 @@ To retrieve your wallet address, follow these steps:
     
 To fund your wallet with BSV Coin, follow these instructions: <br>
 <br>
-1. Obtain a small amount of Bitcoin SV (some satoshi approx. 0.00009$ BSV is enough to make multiple transaction(Minting) ) from your preferred cryptocurrency exchange or wallet. <br>
-2. Use your wallet address to receive the Bitcoin SV (or BSV). You can copy and paste the address or scan the provided QR code. <br>
+1. Obtain a small amount of Bitcoin SV (some satoshi approx. 0.00009$ BSV is enough to make multiple transaction(Minting)from your preferred <br> cryptocurrency exchange or wallet. <br>
+2. Use your wallet address to receive the Bitcoin SV (or BSV), You can copy and paste the address or scan the provided QR code. <br>
 3. Once the transaction is confirmed on the blockchain, your wallet will be funded and ready for NFT minting. <br>
 </p>
 
