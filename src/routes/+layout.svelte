@@ -49,7 +49,9 @@
 
       <NavLi class="lg:px-2 lg:mb-0" active={activeUrl === '/'} href="/">Home</NavLi>
       <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/docs')} href="/docs">Documentation</NavLi>
+      <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/visiting-card')} href="/visiting-card"> Visiting Card </NavLi>
       <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/add-funds')} href="/add-funds"> Add Funds </NavLi>
+      <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/timechain-lab-template-generator')} href="/timechain-lab-template-generator"> Template Generator </NavLi>
       {#if isLoggedIn}
         <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/dashboard')} href="/dashboard">Dashboard</NavLi>
         <NavLi class="lg:px-2 lg:mb-0" active={activeUrl.startsWith('/wallet')} href="/wallet">Wallet</NavLi>
