@@ -1,5 +1,5 @@
 import {getAuthToken} from "./authService";
-const baseURL = 'https://dev.neucron.io';
+const baseURL = 'https://dev.neucron.io/v1';
 export async function getWalletId() {
     try {
         const response = await fetch(baseURL + '/wallet/list', {

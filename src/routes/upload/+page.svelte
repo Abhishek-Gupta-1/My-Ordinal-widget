@@ -10,6 +10,8 @@
 
   export let session; // Get session data from SvelteKit load function
 
+
+
   export async function load() {
     const result = await requireAuth();
     if (result.redirect) {
@@ -26,12 +28,32 @@
   };
 
   let formModal = false;
+  let transactionId = '';
+  let isTransactionSuccessfull = false;
+
+
+  let image;
+
+
+  function handleImageChange(event, imageNumber) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (imageNumber === 1) image = e.target.result;
+        else image = e.target.result;
+      };
+      reader.readAsDataURL(file);
+      if (imageNumber === 1) image = file;
+      else image = file;
+    }
+  }
 
   async function handleUploadClick() {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
 
-    const apiUrl = 'https://dev.neucron.io/tx/upload?' + await getWalletId();
+    const apiUrl = 'https://dev.neucron.io/v1/tx/upload?' + await getWalletId();
 
     const formData = new FormData();
     formData.append('upfile', file);
@@ -43,8 +65,10 @@
       },
       body: formData
     });
+    let apiData = await apiResponse.json();
+    transactionId = apiData.data.txid;
+    isTransactionSuccessfull = true;
 
-    return apiResponse.json();
   }
 
 
@@ -57,7 +81,7 @@
       const walletID =  await getWalletId();
       const message = text.value;
 
-      const response = await fetch(`https://dev.neucron.io/tx/postdata?walletID=${walletID}`, {
+      const response = await fetch(`https://dev.neucron.io/v1/tx/postdata?walletID=${walletID}`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -68,13 +92,22 @@
       });
 
       if (response.ok) {
-        await response.json();
+        let responseData = await response.json();
+        transactionId = responseData.data.txid;
+        isTransactionSuccessfull = true;
+        image = null;
         closeModal();
       } else {
         console.error('Error posting data:', await response.text());
       }
     } catch (error) {
       console.error('An error occurred:', error);
+    }
+  }
+
+  function verifyTransaction() {
+    if (transactionId) {
+      window.open(`https://whatsonchain.com/tx/${transactionId}`, '_blank');
     }
   }
 
@@ -89,7 +122,10 @@
         <label for="fileInput" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded cursor-pointer">
           Select File
         </label>
-        <input id="fileInput" type="file" class="hidden" />
+        <input id="fileInput" type="file" class="hidden" on:change={(e) => handleImageChange(e, 2)}/>
+        {#if image}
+          <img class="preview" src={image} alt="Image 2 Preview" />
+        {/if}
       </div>
       <Button size="xl" on:click={handleUploadClick}>Upload File</Button>
     </TabItem>
@@ -123,4 +159,42 @@
       </div>
     </form>
   </Modal>
+  {#if isTransactionSuccessfull}
+    <p class="success-message">Data Uploaded Succesfully!</p>
+    <div class="transaction-id">
+      <button on:click={verifyTransaction} class="verify-button">Verify Transaction</button>
+    </div>
+  {/if}
 </div>
+
+<style>
+  .preview {
+    max-width: 100px;
+    margin-top: 1rem;
+  }
+
+  .button:hover {
+    background-color: #0056b3;
+  }
+
+  .success-message {
+    color: #00a000;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .verify-button {
+    background-color: #f0f0f0;
+    border: none;
+    color: #007bff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .verify-button:hover {
+    background-color: #e0e0e0;
+    color: #0056b3;
+  }
+</style>

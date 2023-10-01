@@ -7,7 +7,7 @@
   let showPassword = false;
   let errorMessage = "";
 
-  const baseURL = 'https://dev.neucron.io';
+  const baseURL = 'https://dev.neucron.io/v1';
 
   async function handleSubmit(event) {
     event.preventDefault();

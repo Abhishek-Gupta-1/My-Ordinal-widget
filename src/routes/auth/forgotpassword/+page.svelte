@@ -2,14 +2,14 @@
     let email = '';
     let message = '';
 
-     const baseURL = 'https://dev.neucron.io';
-  
+     const baseURL = 'https://dev.neucron.io/v1';
+
     // @ts-ignore
     async function handleSubmit(event) {
       event.preventDefault();
       try {
         const response = await fetch(`${baseURL}/auth/forgot_password?email=${encodeURIComponent(email)}`);
-  
+
         if (response.ok) {
           const data = await response.json();
           // Display the reset email message
@@ -25,7 +25,7 @@
       }
     }
   </script>
-  
+
   <main>
   <div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="max-w-md w-full">
@@ -64,4 +64,3 @@
     </div>
   </div>
 </main>
-  

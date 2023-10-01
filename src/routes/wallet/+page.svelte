@@ -3,7 +3,7 @@
   import { getAuthToken } from '../../services/authService';
   import {getWalletId} from "../../services/WalletService";
 
-  const baseURL = 'https://dev.neucron.io';
+  const baseURL = 'https://dev.neucron.io/v1';
 
   $: balance = {
     confirmed: 0,

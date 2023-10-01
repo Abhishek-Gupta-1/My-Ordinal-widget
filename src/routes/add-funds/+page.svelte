@@ -7,7 +7,7 @@
 
     async function addFundsToWallet() {
         isTransactionProcessing = true;
-        const url = 'https://dev.neucron.io/tx/send?walletID=ac067de7-6581-4dc5-80a0-dd4d0ac8b211';
+        const url = 'https://dev.neucron.io/v1/tx/send?walletID=ac067de7-6581-4dc5-80a0-dd4d0ac8b211';
         const headers = {
             'accept': 'application/json',
             'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTUyOTEzNzgsImlhdCI6MTY5MjY5OTM3OCwiaXNzIjoiaHR0cHM6Ly9uZXVjcm9uLmlvIiwianRpIjoiOGRkN2EwNzktYWY5Ni00MzIxLWFiNzItN2MxN2MwOTJkYmMyIiwibmJmIjoxNjkyNjk5Mzc4LCJzdWIiOiJjZDlkZTY1ZC0wZTE1LTQxYTYtOGUzYi01MzY0YmYwOWQ3ZjQiLCJ1c2VyX2lkIjoiY2Q5ZGU2NWQtMGUxNS00MWE2LThlM2ItNTM2NGJmMDlkN2Y0In0.idRmdxYqwZ0KhWGL-NxVO83PxuhDbsbl_oXQpJr0rLk', // Replace with your actual token

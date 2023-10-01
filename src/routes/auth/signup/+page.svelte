@@ -3,7 +3,7 @@
   import { setAuthToken } from '../../../services/authService';
     import { storeWalletInfo } from '../../../services/database';
 
-    const baseURL = 'https://dev.neucron.io';
+    const baseURL = 'https://dev.neucron.io/v1';
 
   let name = '';
   let email = '';
